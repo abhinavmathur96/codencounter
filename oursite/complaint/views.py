@@ -17,7 +17,7 @@ def index(request):
 
 def details(request, id):
     comp = complaint.objects.get(id=id)
-    return render(request,'details.html',{'comp':comp})
+    return render(request,'details.html', {'comp':comp})
 
 def department(request,id):
     new = complaint.objects.filter(id in departments,completed=False).order_by('-created')
@@ -26,7 +26,15 @@ def department(request,id):
     return render(request,'department.html',{'new':new,'done':done,'resource':resource})
 
 def new_compl(request):
-    form = ComplaintForm()
-    return render(request,'new_compl.html',{'form':form})
+	form = ComplaintForm(request.POST or None)
+
+	if request.method == 'POST':
+		if form.is_valid():
+			print 'valid form' + str(request.POST['title'])
+		else:
+			print 'invalid form'
+	return render(request,'new_compl.html',{'form':form})
     
-    
+def new_compl_form(request):
+	print 'reached function'
+	return request.POST.get('title')
