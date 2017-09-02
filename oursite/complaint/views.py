@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from .models import *
 from .forms import *
+from django.contrib.auth import authenticate, login
 
 def index(request):
     in_progress = progress.objects.filter(completed=False).order_by('-updated')
@@ -59,7 +60,7 @@ def dept_login(request):
                     return render(request,'login.html',{'wrong':False,'notActive':True,'form':form})
             else:
                 return render(request,'login.html',{'wrong':True,'notActive':False,'form':form})
-        else:
-            form = Login()
-            return render(request,'login.html',{'wrong':False,'notActive':False,'form':form})
+    else:
+        form = LogIn()
+        return render(request,'login.html',{'wrong':False,'notActive':False,'form':form})
     
