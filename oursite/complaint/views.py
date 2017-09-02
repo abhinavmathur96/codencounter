@@ -24,5 +24,6 @@ def department(request,id):
     resource = resources.objects.filter(department=id)
     return render(request,'department.html',{'new':new,'done':done,'resource':resource})
 
-
+def new_compl(request):
+	return render(request, 'new_compl.html')
 

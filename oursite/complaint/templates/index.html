@@ -34,7 +34,7 @@
 				<h5 class="header col s12 light">Get the attention of the right authorities at the right time</h5>
 			</div>
 			<div class="row center">
-				<a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">New Complaint</a>
+				<a href="{% url 'new_compl' %}" id="download-button" class="btn-large waves-effect waves-light orange">New Complaint</a>
 			</div>
 			<br><br>
 
@@ -51,24 +51,12 @@
 					<h2 class="center deep-purple-text"><i class="material-icons">done</i></h2>
 					<h5 class="center">Greivances Solved</h5>
 
-					{% if recent %}
+					{% if not progress %}
 					<div class="col s12">
-						<div class="card horizontal">
-							<div class="card-image">
-								<img src="https://lorempixel.com/100/190/nature/6">
-							</div>
-							<div class="card-stacked">
-								<div class="card-content">
-									<p>I am a very simple card. I am good at containing small bits of information.</p>
-								</div>
-								<div class="card-action">
-									<a href="#">This is a link</a>
-								</div>
-							</div>
-						</div>
+						<blockquote>List</blockquote>
 					</div>
 					{% else %}
-					<h5 class="grey-text text-lighten-1 center">Time to wake them up</h5>
+						<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
 					{% endif %}
 				</div>
 			</div>
@@ -78,24 +66,12 @@
 					<h2 class="center deep-purple-text"><i class="material-icons">warning</i></h2>
 					<h5 class="center">In Progress</h5>
 
-					{% if progress %}
+					{% if not progress %}
 					<div class="col s12">
-						<div class="card horizontal">
-							<div class="card-image">
-								<img src="https://lorempixel.com/100/190/nature/6">
-							</div>
-							<div class="card-stacked">
-								<div class="card-content">
-									<p>I am a very simple card. I am good at containing small bits of information.</p>
-								</div>
-								<div class="card-action">
-									<a href="#">This is a link</a>
-								</div>
-							</div>
-						</div>
+						<blockquote>List</blockquote>
 					</div>
 					{% else %}
-					<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
+						<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
 					{% endif %}
 				</div>
 			</div>
@@ -105,24 +81,12 @@
 					<h2 class="center deep-purple-text"><i class="material-icons">fast_forward</i></h2>
 					<h5 class="center">Future Plans</h5>
 
-					{% if future %}
+					{% if not progress %}
 					<div class="col s12">
-						<div class="card horizontal">
-							<div class="card-image">
-								<img src="https://lorempixel.com/100/190/nature/6">
-							</div>
-							<div class="card-stacked">
-								<div class="card-content">
-									<p>I am a very simple card. I am good at containing small bits of information.</p>
-								</div>
-								<div class="card-action">
-									<a href="#">This is a link</a>
-								</div>
-							</div>
-						</div>
+						<blockquote>List</blockquote>
 					</div>
 					{% else %}
-					<h5 class="grey-text text-lighten-1 center">Work in progress</h5>
+						<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
 					{% endif %}
 				</div>
 			</div>
