@@ -26,13 +26,13 @@ def index(request):
         'count':counters})
 
 def details(request, id):
-    if request.method=="POST":
-        form = addProgress(request.POST)
+    if request.method=="GET":
+        form = addProgress(request.GET)
         if form.is_valid():
             form = form.cleaned_data
             progress.objects.create(
                 c_id=id,
-                action=request.POST['action'],
+                action=request.GET['action'],
             )
     else:
         form = addProgress()
@@ -60,6 +60,7 @@ def new_compl(request):
                 image=request.POST['image'],
                 solution=request.POST['solution'],
                 )
+            return redirect('thanks')
             
     form = ComplaintForm()
     return render(request,'new.html',{'form':form})
@@ -83,3 +84,6 @@ def dept_login(request):
         form = LogIn()
         return render(request,'login.html',{'wrong':False,'notActive':False,'form':form})
     
+
+def thanks(request):
+    return render(request,'thanks.html')
