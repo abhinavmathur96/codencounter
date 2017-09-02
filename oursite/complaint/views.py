@@ -20,8 +20,8 @@ def details(request, id):
     return render(request,'details.html', {'comp':comp})
 
 def department_id(request,id):
-    new = complaint.objects.filter(id=department,completed=False).order_by('-created')
-    done = complaint.objects.filter(id=department,completed=True).order_by('-completed_at')
+    new = complaint.objects.filter(department=id,completed=False).order_by('-created')
+    done = complaint.objects.filter(department=id,completed=True).order_by('-completed_at')
     resource = resources.objects.filter(department=id)
     return render(request,'department.html',{'new':new,'done':done,'resource':resource})
 
