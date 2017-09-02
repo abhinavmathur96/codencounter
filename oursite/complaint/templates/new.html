@@ -1,7 +1,51 @@
 {% extends 'base.html' %} {% block content %}
 <form method="POST" action=".">
-    {{form}}
+    <div class="row">
+        <div class="input-field col m6 s12">
+            {{form.title}}
+            <label for="title">Title</label>
+        </div>
+        <div class="input-field col m6 s12">
+            {{form.dept}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col m6 s12">
+            {{form.location}}
+        </div>
+        <div class="input-field col m6 s12">
+            {{form.severity}}
+            <label for="severity">Severity (1 - 10)</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s12 thisClass">
+                    {{form.description}}
+                    <label for="description">Describe the grievance</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{form.image}}
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s12 thisClass">
+                    {{form.solution}}
+                    <label for="description">Provide a solution (Optional)</label>
+                </div>
+            </div>
+        </div>
+    </div>
     {% csrf_token %}
-    <input type="submit" value="Submit">
+    <div class="row">
+        <div class="center">
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+    </div>
 </form>
 {% endblock %}
