@@ -23,7 +23,7 @@ def department_id(request,id):
     new = complaint.objects.filter(department=id,completed=False).order_by('-created')
     done = complaint.objects.filter(department=id,completed=True).order_by('-completed_at')
     resource = resources.objects.filter(department=id)
-    return render(request,'department.html',{'new':new,'done':done,'resource':resource})
+    return render(request,'department.html', {'title':'Department','new':new,'done':done,'resource':resource})
 
 def new_compl(request):
     if request.method=="POST":

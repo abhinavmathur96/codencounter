@@ -1,21 +1,66 @@
 {% extends 'base.html' %} {% block content %}
 <div class="row">
-	<div class="col m8">
+	<div class="col m8 s12">
 		<div class="card">
 			<div class="card-tabs">
 				<ul class="tabs tabs-fixed-width">
-					<li class="tab"><a href="#test4">Test 1</a></li>
-					<li class="tab"><a class="active" href="#test5">Test 2</a></li>
-					<li class="tab"><a href="#test6">Test 3</a></li>
+					<li class="tab"><a class="active" href="#new">New Tasks</a></li>
+					<li class="tab"><a href="#completed">Completed Tasks</a></li>
 				</ul>
 			</div>
 			<div class="card-content grey lighten-4">
-				<div id="test4">Test 1</div>
-				<div id="test5">Test 2</div>
-				<div id="test6">Test 3</div>
+				<div id="new">
+					{% if new %}
+					<ul class="collapsible" data-collapsible="accordion">
+						{% for new_obj in new %}
+						<li>
+							<div class="collapsible-header">{{ new_obj.title }}<span class="right-align">{{new_obj.severity}}</span></div>
+							<div class="collapsible-body"><span>{{ new_obj.description }}</span></div>
+						</li>
+						{% endfor %}
+					</ul>
+					{% else %}
+					<h5 class="grey-text center">No new tasks</h5>
+					{% endif %}
+				</div>
+				<div id="completed">
+					{% if done %}
+					<ul class="collapsible" data-collapsible="accordion">
+						{% for done_obj in done %}
+						<li>
+							<div class="collapsible-header">{{ done_obj.title }}<span class="right-align">{{done_obj.severity}}</span></div>
+							<div class="collapsible-body"><span>{{ done_obj.description }}</span></div>
+						</li>
+						{% endfor %}
+					</ul>
+					{% else %}
+					<h5 class="grey-text center">No tasks completed</h5>
+					{% endif %}
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col m4"></div>
+	<div class="col m4 s12">
+		<div class="card">
+			<div class="card-tabs">
+				<ul class="tabs tabs-fixed-width">
+					<li class="tab"><a href="#resources">Resources Utilised</a></li>
+				</ul>
+			</div>
+			<div class="card-content grey lighten-4">
+				<div id="resources">
+					{% if resource %}
+					<ul class="collection">
+						{% for resource_obj in resource %}
+						<li class="collection-item">{{resource.name}}</li>
+						{% endfor %}
+					</ul>
+					{% else %}
+					<h5 class="grey-text center">No resources utilised</h5>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
