@@ -20,20 +20,28 @@ def details(request, id):
     return render(request,'details.html', {'comp':comp})
 
 def department(request,id):
-    new = complaint.objects.filter(id in departments,completed=False).order_by('-created')
-    done = complaint.objects.filter(id in departments,completed=True).order_by('-completed_at')
+    new = complaint.objects.filter(id=department,completed=False).order_by('-created')
+    done = complaint.objects.filter(id=department,completed=True).order_by('-completed_at')
     resource = resources.objects.filter(department=id)
     return render(request,'department.html',{'new':new,'done':done,'resource':resource})
 
 def new_compl(request):
     if request.method=="POST":
+        print request.POST
         form_data = ComplaintForm(request.POST)
         if form_data.is_valid():
-			title = request.POST.get('title')
-			print title
+            complaint.create(
+                title=form_data['title'],
+                departments=form_data['dept'],
+                location=form_data['location'],
+                seveirty=form_data['severity'],
+                description=form_data['description'],
+                image=form_data['image'],
+                solution=form_data['solution'],
+                )
             
     form = ComplaintForm()
-    return render(request,'new.html', {'form':form})
+    return render(request,'new.html',{'form':form})
     
     
 def new_compl_form(request):
