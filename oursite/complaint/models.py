@@ -19,10 +19,10 @@ class complaint(models.Model):
     location = models.CharField(max_length=5, choices = loc_choices)
     severity = models.IntegerField()
     description = models.TextField()
-    image = models.ImageField()
-    solution = models.TextField()
+    image = models.ImageField(null=True)
+    solution = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add = True)
-    assign = models.ForeignKey(resources, related_name = 'using', default = None)
+    assign = models.ForeignKey(resources, related_name = 'using', default = None, null=True)
     completed = models.BooleanField(default=False)
     completed_at = models.DateTimeField(auto_now = True)
 

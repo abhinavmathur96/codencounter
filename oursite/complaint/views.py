@@ -30,14 +30,15 @@ def new_compl(request):
         print request.POST
         form_data = ComplaintForm(request.POST)
         if form_data.is_valid():
-            complaint.create(
-                title=form_data['title'],
-                departments=form_data['dept'],
-                location=form_data['location'],
-                seveirty=form_data['severity'],
-                description=form_data['description'],
-                image=form_data['image'],
-                solution=form_data['solution'],
+            print request.POST['solution']
+            complaint.objects.create(
+                title=request.POST['title'],
+                department=int(request.POST['dept']),
+                location=request.POST['location'],
+                severity=int(request.POST['severity']),
+                description=request.POST['description'],
+                image=request.POST['image'],
+                solution=request.POST['solution'],
                 )
             
     form = ComplaintForm()
