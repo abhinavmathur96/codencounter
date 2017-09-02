@@ -1,3 +1,3 @@
-*.vscode
-*.pyc
+**/*.vscode
+**/*.pyc
 [Tt]humbs.db
