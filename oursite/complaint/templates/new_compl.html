@@ -1,7 +1,17 @@
-<html>
-	<body>
-		<p>
-			Hello
-		</p>
-	</body>
-</html>
+{% extends 'base.html' %} {% block content %}
+<div class="row">
+	<form method="" action="" class="col s12">
+		{% csrf_token %}
+		<div class="row">
+			<div class="input-field col s6">
+				{{ form.title }}
+				<label for="title">Title</label>
+			</div>
+			{{ form.dept }}
+		</div>
+		<div class="row">
+
+		</div>
+	</form>
+</div>
+{% endblock %}
