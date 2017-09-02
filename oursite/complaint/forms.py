@@ -20,5 +20,5 @@ class ComplaintForm(forms.Form):
     solution = forms.CharField(widget=forms.Textarea)
 
 class LogIn(forms.Form):
-    department_id = forms.CharField(label="Department Id",max_length=10)
-    password = forms.CharField(label="Password",max_length=40)
+    department_id = forms.CharField(label="Department Id")
+    password = forms.CharField(label="Password",widget=forms.PasswordInput)

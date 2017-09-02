@@ -44,7 +44,22 @@ def new_compl(request):
     form = ComplaintForm()
     return render(request,'new.html',{'form':form})
     
+
+def dept_login(request):
+    if request.method=="POST":
+        form = LogIn(request.POST)
+        if form.is_valid():
+            cred = form.cleaned_data
+            user = authenticate(username=cred['department_id'],password=cred['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request,user)
+                    return department_id(request,cred['department_id'])
+                else:
+                    return render(request,'login.html',{'wrong':False,'notActive':True,'form':form})
+            else:
+                return render(request,'login.html',{'wrong':True,'notActive':False,'form':form})
+        else:
+            form = Login()
+            return render(request,'login.html',{'wrong':False,'notActive':False,'form':form})
     
-def new_compl_form(request):
-	print 'reached function'
-	return request.POST.get('title')
