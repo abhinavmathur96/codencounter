@@ -15,7 +15,7 @@ class complaint(models.Model):
         ('14','SECTOR 14'),
     )
     title = models.CharField(max_length = 140,default="")
-    departments = models.CharField(max_length = 20)
+    department = models.IntegerField(default=None)
     location = models.CharField(max_length=5, choices = loc_choices)
     severity = models.IntegerField()
     description = models.TextField()
