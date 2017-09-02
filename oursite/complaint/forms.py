@@ -16,5 +16,6 @@ class ComplaintForm(forms.Form):
     location = forms.CharField(label="Choose Location",widget=forms.Select(choices=LOC_CHOICES))
     severity = forms.IntegerField()
     description = forms.CharField(widget=forms.Textarea)
-    image = forms.ImageField()
+    image = forms.ImageField(required=False)
     solution = forms.CharField(widget=forms.Textarea)
+
