@@ -2,5 +2,8 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+from django.auth.models import *
 
-# Create your views here.
+def index(request):
+    
+def 
