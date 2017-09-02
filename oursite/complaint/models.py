@@ -29,9 +29,8 @@ class complaint(models.Model):
     completed_at = models.DateTimeField(auto_now = True)
 
 class progress(models.Model):
-    id = models.OneToOneField(complaint,related_name="progress",primary_key = True)
+    c_id = models.ForeignKey(complaint,related_name="progress",default=None)
     action = models.TextField()
-    completed = models.BooleanField(default = False)
-    updated = models.DateTimeField(auto_now = True)
+    updated = models.DateTimeField(default=timezone.now)
 
     

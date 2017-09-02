@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
 from django.contrib.auth import authenticate, login
@@ -14,11 +14,30 @@ def index(request):
     future = future[:min(5,len(future))]
     recent = complaint.objects.filter(completed=True).order_by('-posted')
     recent = recent[:min(5,len(recent))]
-    return render(request,'index.html',{'title':'Home' ,'progress':in_progress,'future':future,'recent':recent})
+    counters = {}
+    counters['Electrical'] = [len(complaint.objects.filter(department=1)),len(complaint.objects.filter(department=1,completed=True))]
+    counters['Water'] = [len(complaint.objects.filter(department=2)),len(complaint.objects.filter(department=2,completed=True))]
+    counters['Waste'] = [len(complaint.objects.filter(department=3)),len(complaint.objects.filter(department=3,completed=True))]
+    return render(request,'index.html',{
+        'title':'Home' ,
+        'progress':in_progress,
+        'future':future,
+        'recent':recent,
+        'count':counters})
 
 def details(request, id):
-    comp = complaint.objects.get(id=id)
-    return render(request,'details.html', {'comp':comp})
+    if request.method=="POST":
+        form = addProgress(request.POST)
+        if form.is_valid():
+            form = form.cleaned_data
+            progress.objects.create(
+                c_id=id,
+                action=request.POST['action'],
+            )
+    else:
+        form = addProgress()
+        comp = complaint.objects.get(id=id)
+        return render(request,'details.html', {'comp':comp,'form':form})
 
 def department_id(request,id):
     new = complaint.objects.filter(department=id,completed=False).order_by('-created')
@@ -55,7 +74,7 @@ def dept_login(request):
             if user is not None:
                 if user.is_active:
                     login(request,user)
-                    return department_id(request,cred['department_id'])
+                    return redirect('department',id=cred['department_id'])
                 else:
                     return render(request,'login.html',{'wrong':False,'notActive':True,'form':form})
             else:

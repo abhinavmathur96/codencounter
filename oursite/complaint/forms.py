@@ -22,3 +22,6 @@ class ComplaintForm(forms.Form):
 class LogIn(forms.Form):
     department_id = forms.CharField(label="Department Id")
     password = forms.CharField(label="Password",widget=forms.PasswordInput)
+
+class addProgress(forms.Form):
+    action = forms.CharField(widget=forms.Textarea)
