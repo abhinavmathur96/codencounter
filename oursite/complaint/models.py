@@ -23,6 +23,7 @@ class complaint(models.Model):
     solution = models.TextField()
     created = models.DateTimeField(auto_now_add = True)
     assign = models.ForeignKey(resources, related_name = 'using', default = None)
+    completed = models.BooleanField(default=False)
 
 class progress(models.Model):
     id = models.OneToOneField(complaint,related_name="progress",primary_key = True)
