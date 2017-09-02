@@ -52,8 +52,10 @@
 					<h5 class="center">Greivances Solved</h5>
 
 					{% if recent %}
-					<div class="col s12">
-						<blockquote>List</blockquote>
+					<div class="col s12 collection">
+						{% for r_obj in recent %}
+						<a href="#" class="collection-item">{{ r_obj.title }}</a>
+						{% endfor %}
 					</div>
 					{% else %}
 						<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
@@ -67,8 +69,10 @@
 					<h5 class="center">In Progress</h5>
 
 					{% if progress %}
-					<div class="col s12">
-						<blockquote>List</blockquote>
+					<div class="col s12 collection">
+						{% for p_obj in progress %}
+							<a href="#" class="collection-item">{{ p_obj.title }}</a>
+						{% endfor %}
 					</div>
 					{% else %}
 						<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
