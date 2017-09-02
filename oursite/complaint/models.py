@@ -16,5 +16,14 @@ class complaint(models.Model):
     solution = models.TextField()
     created = models.DateTimeField(auto_now_add = True)
 
+class progress(models.Model):
+    id = models.OneToOneField(complaint,related_name="progress",primary_key = True)
+    action = models.TextField()
+    completed = models.BooleanField(default = False)
+    updated = models.DateTimeField(auto_now = True)
 
-
+class resources(models.Model):
+    name = models.CharField(max_length=40)
+    department = models.CharField(max_length=20)
+    working = models.BooleanField()
+    
