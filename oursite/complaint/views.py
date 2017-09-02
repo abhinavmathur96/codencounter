@@ -27,6 +27,6 @@ def department(request,id):
 
 def new_compl(request):
     form = ComplaintForm()
-    return render(request,'new.html',{'form':form})
+    return render(request,'new_compl.html',{'form':form})
     
     
