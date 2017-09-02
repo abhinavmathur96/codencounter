@@ -2,7 +2,21 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from .models import *
+<<<<<<< HEAD
 from .forms import *
+=======
+
+DEPT_CHOICES = {
+        '1':'ELECTRICAL',
+        '2': 'WATER',
+        '3': 'WASTE'
+}
+LOC_CHOICES = {
+	'23': 'SECTOR 23',
+	'22': 'SECTOR 22',
+	'14': 'SECTOR 14'
+}
+>>>>>>> master
 
 def index(request):
     in_progress = progress.objects.filter(completed=False).order_by('-updated')
