@@ -6,10 +6,10 @@ from .forms import *
 from django.contrib.auth import authenticate, login
 
 def index(request):
-    in_progress = progress.objects.filter(completed=False).order_by('-updated')
+    in_progress = progress.objects.filter().order_by('-updated')
     in_progress = in_progress[:min(5,len(in_progress))]
     for i in range(len(in_progress)):
-        in_progress[i] = complaint.objects.get(id=in_progress[i].id)
+        in_progress[i] = complaint.objects.get(id=in_progress[i].id,completed=False)
     future = complaint.objects.filter(assign=None).order_by('posted')
     future = future[:min(5,len(future))]
     recent = complaint.objects.filter(completed=True).order_by('-posted')
