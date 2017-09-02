@@ -3,6 +3,17 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from .models import *
 
+DEPT_CHOICES = {
+        '1': 'ELECTRICAL',
+        '2': 'WATER',
+        '3': 'WASTE'
+}
+LOC_CHOICES = {
+	'23':'SECTOR 23',
+	'22':'SECTOR 22',
+	'14':'SECTOR 14'
+}
+
 def index(request):
     in_progress = progress.objects.filter(completed=False).order_by('-updated')
     in_progress = in_progress[:min(5,len(in_progress))]
@@ -25,5 +36,5 @@ def department(request,id):
     return render(request,'department.html',{'new':new,'done':done,'resource':resource})
 
 def new_compl(request):
-	return render(request, 'new_compl.html')
+	return render(request, 'new_compl.html', {'deptartments': DEPT_CHOICES, 'locations': LOC_CHOICES})
 
