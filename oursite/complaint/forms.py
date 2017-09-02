@@ -15,6 +15,6 @@ class ComplaintForm(forms.Form):
     dept = forms.MultipleChoiceField(label="Choose Department(s)",required=True,widget=forms.CheckboxSelectMultiple,choices = DEPT_CHOICES)
     location = forms.CharField(label="Choose Location",widget=forms.Select(choices=LOC_CHOICES))
     severity = forms.IntegerField()
-    description = forms.TextField()
+    description = forms.CharField(widget=forms.Textarea)
     image = forms.ImageField()
-    solution = forms.TextField()
+    solution = forms.CharField(widget=forms.Textarea)
