@@ -26,25 +26,15 @@ def department(request,id):
     return render(request,'department.html',{'new':new,'done':done,'resource':resource})
 
 def new_compl(request):
-<<<<<<< HEAD
-	form = ComplaintForm(request.POST or None)
-
-	if request.method == 'POST':
-		if form.is_valid():
-			print 'valid form' + str(request.POST['title'])
-		else:
-			print 'invalid form'
-	return render(request,'new_compl.html',{'form':form})
-=======
     if request.method=="POST":
         form_data = ComplaintForm(request.POST)
-        if form.is_valid():
-            title = request.POST.get('title')
+        if form_data.is_valid():
+			title = request.POST.get('title')
+			print title
             
-    #form = ComplaintForm()
-    return render(request,'new_compl.html',)
+    form = ComplaintForm()
+    return render(request,'new.html', {'form':form})
     
->>>>>>> f1820073fa08dd7c231c3ef96e6ebac178098358
     
 def new_compl_form(request):
 	print 'reached function'
