@@ -1,27 +1,4 @@
 {% extends 'base.html' %} {% block content %}
-<<<<<<< HEAD
-<div class="row">
-	<form method="" action="" class="col s12">
-		{% csrf_token %}
-		<div class="row">
-			<div class="input-field col s6">
-				{{ form.title }}
-				<label for="title">Title</label>
-			</div>
-			{{ form.dept }}
-		</div>
-		<div class="row">
-
-		</div>
-	</form>
-</div>
-=======
-{% load material_form %}
-{% comment %} <form method="POST">
-	{% csrf_token %}
-	{% form form=form %}{% endform %}
-	<button type="submit" name="_submit" class="btn">Submit</button>
-</form> {% endcomment %}
 <div class="row">
 	<form class="col s12" method="POST" action="../../views/new_compl">
 		{% csrf_token %}
@@ -88,6 +65,5 @@
 </div>
 <input type="Submit" value="Submit">
 </form>
-</div> 
->>>>>>> b44bed4f902b648e6c620618bfcf499dbbfaaa85
+</div>
 {% endblock %}
