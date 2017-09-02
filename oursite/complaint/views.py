@@ -13,5 +13,5 @@ def index(request):
     future = future[:min(5,len(future))]
     recent = complaint.objects.filter(completed=False).order_by('-created')
     recent = recent[:min(5,len(recent))]
-    return render(request,'index.html',{'progress':in_progress,'future':future,'recent':recent})
+    return render(request,'index.html',{'title':'Home' ,'progress':in_progress,'future':future,'recent':recent})
 
