@@ -6,10 +6,10 @@ from .forms import *
 from django.contrib.auth import authenticate, login
 
 def index(request):
-    in_progress = progress.objects.filter(completed=False).order_by('-updated')
+    in_progress = progress.objects.filter().order_by('-updated')
     in_progress = in_progress[:min(5,len(in_progress))]
     for i in range(len(in_progress)):
-        in_progress[i] = complaint.objects.get(id=in_progress[i].id)
+        in_progress[i] = complaint.objects.get(id=in_progress[i].id,completed=False)
     future = complaint.objects.filter(assign=None).order_by('posted')
     future = future[:min(5,len(future))]
     recent = complaint.objects.filter(completed=True).order_by('-posted')
@@ -26,13 +26,13 @@ def index(request):
         'count':counters})
 
 def details(request, id):
-    if request.method=="POST":
-        form = addProgress(request.POST)
+    if request.method=="GET":
+        form = addProgress(request.GET)
         if form.is_valid():
             form = form.cleaned_data
             progress.objects.create(
                 c_id=id,
-                action=request.POST['action'],
+                action=request.GET['action'],
             )
     else:
         form = addProgress()
@@ -60,6 +60,7 @@ def new_compl(request):
                 image=request.POST['image'],
                 solution=request.POST['solution'],
                 )
+            return redirect('thanks')
             
     form = ComplaintForm()
     return render(request,'new.html',{'form':form})
@@ -83,3 +84,6 @@ def dept_login(request):
         form = LogIn()
         return render(request,'login.html',{'wrong':False,'notActive':False,'form':form})
     
+
+def thanks(request):
+    return render(request,'thanks.html')
