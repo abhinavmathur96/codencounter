@@ -4,14 +4,14 @@ from django.shortcuts import render
 from .models import *
 
 DEPT_CHOICES = {
-        '1': 'ELECTRICAL',
+        '1':'ELECTRICAL',
         '2': 'WATER',
         '3': 'WASTE'
 }
 LOC_CHOICES = {
-	'23':'SECTOR 23',
-	'22':'SECTOR 22',
-	'14':'SECTOR 14'
+	'23': 'SECTOR 23',
+	'22': 'SECTOR 22',
+	'14': 'SECTOR 14'
 }
 
 def index(request):

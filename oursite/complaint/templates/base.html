@@ -26,9 +26,7 @@
 			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 		</div>
 	</nav>
-	{% block content %}
-    
-	{% endblock %}
+	{% block content %} {% endblock %}
 	<footer class="page-footer deep-purple">
 		<div class="container">
 			<div class="row">
@@ -71,6 +69,11 @@
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="{% static 'js/materialize.min.js' %}"></script>
 	<script src="{% static 'js/init.js' %}"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('select').material_select();
+		});
+	</script>
 
 </body>
 
