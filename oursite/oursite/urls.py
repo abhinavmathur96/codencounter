@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from complaint import urls
+import complaint as 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^user/', include('complaint.urls'))
 ]

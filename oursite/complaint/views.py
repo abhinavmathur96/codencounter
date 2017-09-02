@@ -5,5 +5,4 @@ from django.shortcuts import render
 from django.auth.models import *
 
 def index(request):
-    
-def 
+    return render(request, 'index.html', {'title': 'Home'})
