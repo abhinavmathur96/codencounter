@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
+from django.utils import timezone
 
 class resources(models.Model):
     name = models.CharField(max_length=40)
@@ -21,6 +22,7 @@ class complaint(models.Model):
     description = models.TextField()
     image = models.ImageField(null=True)
     solution = models.TextField(blank=True)
+    posted = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add = True)
     assign = models.ForeignKey(resources, related_name = 'using', default = None, null=True)
     completed = models.BooleanField(default=False)

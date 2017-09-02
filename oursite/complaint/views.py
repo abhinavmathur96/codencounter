@@ -9,9 +9,9 @@ def index(request):
     in_progress = in_progress[:min(5,len(in_progress))]
     for i in range(len(in_progress)):
         in_progress[i] = complaint.objects.get(id=in_progress[i].id)
-    future = complaint.objects.filter(assign=None).order_by('created')
+    future = complaint.objects.filter(assign=None).order_by('posted')
     future = future[:min(5,len(future))]
-    recent = complaint.objects.filter(completed=True).order_by('-created')
+    recent = complaint.objects.filter(completed=True).order_by('-posted')
     recent = recent[:min(5,len(recent))]
     return render(request,'index.html',{'title':'Home' ,'progress':in_progress,'future':future,'recent':recent})
 
