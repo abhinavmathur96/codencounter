@@ -15,3 +15,15 @@ def index(request):
     recent = recent[:min(5,len(recent))]
     return render(request,'index.html',{'title':'Home' ,'progress':in_progress,'future':future,'recent':recent})
 
+def details(request, id):
+    comp = complaint.objects.get(id=id)
+    return render(request,'details.html',{'comp':comp})
+
+def department(request,id):
+    new = complaint.objects.filter(id in departments,completed=False).order_by('-created')
+    done = complaint.objects.filter(id in departments,completed=True).order_by('-completed_at')
+    resource = resources.objects.filter(department=id)
+    return render(request,'department.html',{'new':new,'done':done,'resource':resource})
+
+
+
