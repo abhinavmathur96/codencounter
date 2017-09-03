@@ -1,3 +1,6 @@
+
 {% extends "base.html" %}
-<p> Thank You for reporting the Complaint.</p>
-<a href="{% url 'index'%}" class="waves-effect waves-light btn">Back to Home</a>
+
+{% block content %}
+<p> Thank You for reporting the Complaint.  <a href="{% url 'index'%}" class="waves-effect waves-light btn">Home</a></p>
+{% endblock %}

@@ -34,6 +34,7 @@ def details(request, id):
                 c_id=id,
                 action=request.GET['action'],
             )
+        return render(request,'details.html',{'comp':comp,'form':form})
     else:
         form = addProgress()
         comp = complaint.objects.get(id=id)
