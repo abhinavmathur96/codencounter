@@ -8,8 +8,12 @@ from django.contrib.auth import authenticate, login
 def index(request):
     in_progress = progress.objects.filter().order_by('-updated')
     in_progress = in_progress[:min(5,len(in_progress))]
+    temp = []
     for i in range(len(in_progress)):
-        in_progress[i] = complaint.objects.get(id=in_progress[i].id,completed=False)
+        in_progress[i] = complaint.objects.get(id=in_progress[i].id)
+        if in_progress[i].completed==False:
+            temp.append(in_progress[i])
+    in_progress = temp[:]
     future = complaint.objects.filter(assign=None).order_by('posted')
     future = future[:min(5,len(future))]
     recent = complaint.objects.filter(completed=True).order_by('-posted')
@@ -26,21 +30,18 @@ def index(request):
         'count':counters})
 
 def details(request, id):
-	comp = complaint.objects.get(id=id)
-	assigned = resources.objects.exclude(working = 1)
-	if request.method=="POST":
-		form = addProgress(	request.POST)
-		if form.is_valid():
-			form = form.cleaned_data
-			progress.objects.create(
-				c_id=id,
-				action=request.POST['action'],
-			)
-		return render(request,'details.html',{'comp':comp,'form':form, 'resources': assigned})
-	else:
-		comp = complaint.objects.get(id=id)
-		form = addProgress()
-		return render(request,'details.html', {'comp':comp,'form':form, 'resources': assigned})
+    comp = complaint.objects.get(id=id)
+    print request.method
+    if request.method=="POST":
+        form = addProgress(request.POST)
+        print request.POST
+        progress.objects.create(
+				c_id=comp,
+				action=request.POST['action'])
+        return redirect('index')
+    comp = complaint.objects.get(id=id)
+    form = addProgress()
+    return render(request,'details.html', {'comp':comp,'form':form, 'id':id})
 
 def complete(request, id, dept_id):
     comp = complaint.objects.get(id=id)
