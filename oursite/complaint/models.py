@@ -21,7 +21,7 @@ class complaint(models.Model):
     severity = models.IntegerField()
     description = models.TextField()
     image = models.ImageField(null=True)
-    solution = models.TextField(blank=True)
+    solution = models.TextField(null=True,blank=True)
     posted = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add = True)
     assign = models.ForeignKey(resources, related_name = 'using', default = None, null=True)

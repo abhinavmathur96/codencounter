@@ -17,7 +17,7 @@ class ComplaintForm(forms.Form):
     severity = forms.IntegerField()
     description = forms.CharField(widget=forms.Textarea)
     image = forms.ImageField(required=False)
-    solution = forms.CharField(widget=forms.Textarea)
+    solution = forms.CharField(widget=forms.Textarea, required=False)
 
 class LogIn(forms.Form):
     department_id = forms.CharField(label="Department Id")

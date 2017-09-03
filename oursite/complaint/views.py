@@ -67,8 +67,8 @@ def new_compl(request):
                 location=request.POST['location'],
                 severity=int(request.POST['severity']),
                 description=request.POST['description'],
-                image=request.POST['image'],
-                solution=request.POST['solution'],
+                image=request.POST['image'] if request.POST['image'] else None,
+                solution=request.POST['solution'] if request.POST['solution'] else None,
                 )
             return redirect('thanks')
             
