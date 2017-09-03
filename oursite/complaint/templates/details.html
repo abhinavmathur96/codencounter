@@ -29,16 +29,17 @@
 			<li>
 				<div class="collapsible-header"><i class="material-icons">show_chart</i>Add progress</div>
 				<div class="collapsible-body">
-					<form action="." method="POST">
+					<form action="{% url 'department_detail' comp.id %}" method="POST">
 						{{ form }}
-						<div class="row">
+                        {% csrf_token %}
+                        <div class="row">
 							<div class="center">
 								<button class="btn waves-effect waves-light" type="submit" name="action">Submit
 									<i class="material-icons right">send</i>
 								  </button>
 							</div>
 						</div>
-						{% csrf_token %}
+						
 					</form>
 				</div>
 			</li>
