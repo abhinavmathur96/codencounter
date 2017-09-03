@@ -26,20 +26,21 @@ def index(request):
         'count':counters})
 
 def details(request, id):
-    if request.method=="POST":
-        comp = complaint.objects.get(id=id)
-        form = addProgress(request.POST)
-        if form.is_valid():
-            form = form.cleaned_data
-            progress.objects.create(
-                c_id=id,
-                action=request.POST['action'],
-            )
-        return render(request,'details.html',{'comp':comp,'form':form})
-    else:
-        comp = complaint.objects.get(id=id)
-        form = addProgress()
-        return render(request,'details.html', {'comp':comp,'form':form})
+	comp = complaint.objects.get(id=id)
+	assigned = resources.objects.exclude(working = 1)
+	if request.method=="POST":
+		form = addProgress(	request.POST)
+		if form.is_valid():
+			form = form.cleaned_data
+			progress.objects.create(
+				c_id=id,
+				action=request.POST['action'],
+			)
+		return render(request,'details.html',{'comp':comp,'form':form, 'resources': assigned})
+	else:
+		comp = complaint.objects.get(id=id)
+		form = addProgress()
+		return render(request,'details.html', {'comp':comp,'form':form, 'resources': assigned})
 
 def department_id(request,id):
     new = complaint.objects.filter(department=id,completed=False).order_by('-created')

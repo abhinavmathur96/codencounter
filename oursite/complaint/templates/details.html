@@ -1,23 +1,72 @@
 {% extends 'base.html' %} {% block content %}
 <div class="row">
-	<ul class="collapsible popout" data-collapsible="accordion">
-		<li>
-			<div class="collapsible-header">{{ comp.title }}</div>
-			<div class="collapsible-body">First_body</div>
-		</li>
-		<li>
-			<div class="collapsible-header">First</div>
-			<div class="collapsible-body">First_body</div>
-		</li>
-		<li>
-			<div class="collapsible-header">First</div>
-			<div class="collapsible-body">First_body</div>
-		</li>
-		<li>
-			<div class="collapsible-header">First</div>
-			<div class="collapsible-body">First_body</div>
-		</li>
-
-	</ul>
+	<h3 class="grey-text center text-darken-1">{{ comp.title }}</h3>
+</div>
+{% if comp.image %}
+<div class="row">
+	<img class="responsive-img" src="{{ comp.image }}">
+</div>
+{% endif %}
+<div class="row center">
+	<div class="col s6">
+		Location:
+		<p class="flow-text">{{ comp.location }}</p>
+	</div>
+	<div class="col s6">
+		Severity:
+		<p class="flow-text">{{ comp.severity }}</p>
+	</div>
+</div>
+<div class="row">
+	<div class="container center">
+		Description:<br>
+		<p class="flow-text">{{ comp.description }}</p>
+	</div>
+</div>
+<div class="row">
+	<div class="container">
+		<ul class="collapsible" data-collapsible="accordion">
+			<li>
+				<div class="collapsible-header"><i class="material-icons">show_chart</i>Add progress</div>
+				<div class="collapsible-body">
+					<form action="." method="POST">
+						{{ form }}
+						<div class="row">
+							<div class="center">
+								<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+									<i class="material-icons right">send</i>
+								  </button>
+							</div>
+						</div>
+						{% csrf_token %}
+					</form>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header"><i class="material-icons">done_all</i>Mark completed</div>
+				<div class="collapsible-body">
+					<div class="row">
+						<div class="center">
+							<button class="btn-floating btn-large waves-effect waves-light" type="submit" name="action">
+									<i class="material-icons right">check</i>
+								  </button>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header"><i class="material-icons">person_add</i>Assign</div>
+				<div class="collapsible-body">
+					{% if not res %}
+					<h5 class="grey-text text-lighten-1 center">No people to assign</h5>
+					{% else %}
+					{% for res in resources %}
+						<p>{{ res.name }}</p>
+					{% endfor %}
+					{% endif %}
+				</div>
+			</li>
+		</ul>
+	</div>
 </div>
 {% endblock %}
