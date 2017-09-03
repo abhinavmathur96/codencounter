@@ -11,12 +11,9 @@
 			<div class="card-content grey lighten-4">
 				<div id="new">
 					{% if new %}
-					<ul class="collapsible" data-collapsible="accordion">
+					<div class="collection">
 						{% for new_obj in new %}
-						<li>
-							<div class="collapsible-header">{{ new_obj.title }}<span class="right-align">{{new_obj.severity}}</span></div>
-							<div class="collapsible-body"><span>{{ new_obj.description }}</span></div>
-						</li>
+						<a href="{% url 'department_detail' new_obj.id %}" class="collection-item">{{ new_obj.title }}<span class="right-align">{{new_obj.severity}}</span></a>
 						{% endfor %}
 					</ul>
 					{% else %}
