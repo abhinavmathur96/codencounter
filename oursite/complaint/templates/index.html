@@ -11,20 +11,12 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="{% static 'css/materialize.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
 	<link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
 </head>
 
 <body>
 	<nav class="deep-purple" role="navigation">
-		<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">e-Gov</a>
-			<ul class="right hide-on-med-and-down">
-				<li><a href="#">Sign In</a></li>
-			</ul>
-
-			<ul id="nav-mobile" class="side-nav">
-				<li><a href="#">Sign In</a></li>
-			</ul>
-			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-		</div>
+		<div class="nav-wrapper container"><a id="logo-container" href="{% url 'index' %}" class="brand-logo">e-Gov</a></div>
 	</nav>
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
@@ -37,14 +29,10 @@
 				<a href="{% url 'new_compl' %}" id="download-button" class="btn-large waves-effect waves-light orange">New Complaint</a>
 			</div>
 			<br><br>
-
 		</div>
 	</div>
 
-
 	<div class="section">
-
-		<!--   Icon Section   -->
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="icon-block">
@@ -54,11 +42,10 @@
 					{% if recent %}
 					<div class="col s12 collection">
 						{% for r_obj in recent %}
-						<a href="#" class="collection-item">{{ r_obj.title }}</a>
-						{% endfor %}
+						<a href="#" class="collection-item">{{ r_obj.title }}</a> {% endfor %}
 					</div>
 					{% else %}
-						<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
+					<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
 					{% endif %}
 				</div>
 			</div>
@@ -71,11 +58,10 @@
 					{% if progress %}
 					<div class="col s12 collection">
 						{% for p_obj in progress %}
-							<a href="#" class="collection-item">{{ p_obj.title }}</a>
-						{% endfor %}
+						<a href="#" class="collection-item">{{ p_obj.title }}</a> {% endfor %}
 					</div>
 					{% else %}
-						<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
+					<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
 					{% endif %}
 				</div>
 			</div>
@@ -88,45 +74,52 @@
 					{% if future %}
 					<div class="col s12 collection">
 						{% for f_obj in future %}
-							<a href="#" class="collection-item">{{ f_obj.title }}</a>
-						{% endfor %}
+						<a href="#" class="collection-item">{{ f_obj.title }}</a> {% endfor %}
 					</div>
 					{% else %}
-						<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
+					<h5 class="grey-text text-lighten-1 center">Expect action soon</h5>
 					{% endif %}
 				</div>
 			</div>
 		</div>
-
+	</div>
+	<div class="row">
+		<div class="col m4 s12 chart-container">
+			<canvas id="eleChart" width="400" height="400"></canvas>
+		</div>
+		<div class="col m4 s12 chart-container">
+			<canvas id="watChart" width="400" height="400"></canvas>
+		</div>
+		<div class="col m4 s12 chart-container">
+			<canvas id="wasChart" width="400" height="400"></canvas>
+		</div>
 	</div>
 	<br><br>
-
 	<footer class="page-footer deep-purple">
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12">
 					<h5 class="white-text">e-Gov</h5>
-					<p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support
-						and continue development on this project and is greatly appreciated.</p>
-
-
+					<p class="grey-text text-lighten-4">
+						e-Gov is a digital e-Governance portal which offers it's users the power to reach the right people at the right time in the
+						right way
+					</p>
 				</div>
 				<div class="col l3 s12">
-					<h5 class="white-text">Settings</h5>
-					<ul>
-						<li><a class="white-text" href="#!">Link 1</a></li>
-						<li><a class="white-text" href="#!">Link 2</a></li>
-						<li><a class="white-text" href="#!">Link 3</a></li>
-						<li><a class="white-text" href="#!">Link 4</a></li>
-					</ul>
+					<h5 class="white-text"></h5>
+					<!-- <ul>
+							<li><a class="white-text" href="#!">Link 1</a></li>
+							<li><a class="white-text" href="#!">Link 2</a></li>
+							<li><a class="white-text" href="#!">Link 3</a></li>
+							<li><a class="white-text" href="#!">Link 4</a></li>
+						</ul> -->
 				</div>
 				<div class="col l3 s12">
 					<h5 class="white-text">Connect</h5>
 					<ul>
-						<li><a class="white-text" href="#!">Link 1</a></li>
-						<li><a class="white-text" href="#!">Link 2</a></li>
-						<li><a class="white-text" href="#!">Link 3</a></li>
-						<li><a class="white-text" href="#!">Link 4</a></li>
+						<li><a class="white-text" href="#!">Abhinav Mathur</a><i class="material-icons right">send</i></li>
+						<li><a class="white-text" href="#!">Devansh Bhatia</a><i class="material-icons right">send</i></li>
+						<li><a class="white-text" href="#!">Navkrishna</a><i class="material-icons right">send</i></li>
 					</ul>
 				</div>
 			</div>
@@ -143,6 +136,88 @@
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="{% static 'js/materialize.min.js' %}"></script>
 	<script src="{% static 'js/init.js' %}"></script>
+	<script src="{% static 'js/Chart.bundle.min.js' %}"></script>
+	<script src="{% static 'js/Chart.min.js' %}"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('select').material_select();
+			$('textarea').addClass('materialize-textarea');
+		});
+
+		var a = {{ count|safe }};
+		console.log(a);
+		var ctx_ele = document.getElementById("eleChart");
+		var myChart_ele = new Chart(ctx_ele, {
+			type: 'pie',
+			data: {
+				labels: ["Pending", "Completed"],
+				datasets: [{
+					label: 'Task Distribution',
+					data: [a['Electrical'][0] - a['Electrical'][1], a['Electrical'][0]],
+					backgroundColor: [
+						'rgba(213, 0, 0, 0.7)',
+						'rgba(0, 200, 83, 0.7)'
+					],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				cutoutPercentage: 50,
+				title: {
+					display: true,
+					text: 'Electrical Department'
+				}
+			}
+		});
+
+		var ctx_wat = document.getElementById("watChart");
+		var myChart_wat = new Chart(ctx_wat, {
+			type: 'pie',
+			data: {
+				labels: ["Pending", "Completed"],
+				datasets: [{
+					label: 'Task Distribution',
+					data: [a['Water'][0] - a['Water'][1], a['Water'][0]],
+					backgroundColor: [
+						'rgba(213, 0, 0, 0.7)',
+						'rgba(0, 200, 83, 0.7)'
+					],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				cutoutPercentage: 50,
+				title: {
+					display: true,
+					text: 'Water Department'
+				}
+			}
+		});
+
+		var ctx_was = document.getElementById("wasChart");
+		var myChart_was = new Chart(ctx_was, {
+			type: 'pie',
+			data: {
+				labels: ["Pending", "Completed"],
+				datasets: [{
+					label: 'Task Distribution',
+					data: [a['Waste'][0] - a['Waste'][1], a['Waste'][0]],
+					backgroundColor: [
+						'rgba(213, 0, 0, 0.7)',
+						'rgba(0, 200, 83, 0.7)'
+					],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				cutoutPercentage: 50,
+				title: {
+					display: true,
+					text: 'Waste Department'
+				}
+			}
+		});
+	</script>
 
 </body>
 

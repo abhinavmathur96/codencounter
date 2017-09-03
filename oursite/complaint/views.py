@@ -15,9 +15,9 @@ def index(request):
     recent = complaint.objects.filter(completed=True).order_by('-posted')
     recent = recent[:min(5,len(recent))]
     counters = {}
-    counters['Electrical'] = [len(complaint.objects.filter(department=1)),len(complaint.objects.filter(department=1,completed=True))]
-    counters['Water'] = [len(complaint.objects.filter(department=2)),len(complaint.objects.filter(department=2,completed=True))]
-    counters['Waste'] = [len(complaint.objects.filter(department=3)),len(complaint.objects.filter(department=3,completed=True))]
+    counters['Electrical'.encode('ascii')] = [len(complaint.objects.filter(department=1)),len(complaint.objects.filter(department=1,completed=True))]
+    counters['Water'.encode('ascii')] = [len(complaint.objects.filter(department=2)),len(complaint.objects.filter(department=2,completed=True))]
+    counters['Waste'.encode('ascii')] = [len(complaint.objects.filter(department=3)),len(complaint.objects.filter(department=3,completed=True))]
     return render(request,'index.html',{
         'title':'Home' ,
         'progress':in_progress,
