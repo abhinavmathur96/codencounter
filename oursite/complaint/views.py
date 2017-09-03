@@ -67,8 +67,7 @@ def new_compl(request):
                 location=request.POST['location'],
                 severity=int(request.POST['severity']),
                 description=request.POST['description'],
-                image=request.POST['image'] if request.POST['image'] else None,
-                solution=request.POST['solution'] if request.POST['solution'] else None,
+                solution=request.POST.get('solution',False),
                 )
             return redirect('thanks')
             
@@ -92,8 +91,7 @@ def dept_login(request):
                 return render(request,'login.html',{'wrong':True,'notActive':False,'form':form})
     else:
         form = LogIn()
-        return render(request,'login.html',{'wrong':False,'notActive':False,'form':form})
-    
+        return render(request,'login.html',{'wrong':False,'notActive':False,'form':form})  
 
 def thanks(request):
     return render(request,'thanks.html')

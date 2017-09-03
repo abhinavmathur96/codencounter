@@ -20,7 +20,6 @@ class complaint(models.Model):
     location = models.CharField(max_length=5, choices = loc_choices)
     severity = models.IntegerField()
     description = models.TextField()
-    image = models.ImageField(null=True)
     solution = models.TextField(null=True,blank=True)
     posted = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add = True)
