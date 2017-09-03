@@ -26,18 +26,19 @@ def index(request):
         'count':counters})
 
 def details(request, id):
-    if request.method=="GET":
-        form = addProgress(request.GET)
+    if request.method=="POST":
+        comp = complaint.objects.get(id=id)
+        form = addProgress(request.POST)
         if form.is_valid():
             form = form.cleaned_data
             progress.objects.create(
                 c_id=id,
-                action=request.GET['action'],
+                action=request.POST['action'],
             )
         return render(request,'details.html',{'comp':comp,'form':form})
     else:
-        form = addProgress()
         comp = complaint.objects.get(id=id)
+        form = addProgress()
         return render(request,'details.html', {'comp':comp,'form':form})
 
 def department_id(request,id):
