@@ -42,6 +42,12 @@ def details(request, id):
 		form = addProgress()
 		return render(request,'details.html', {'comp':comp,'form':form, 'resources': assigned})
 
+def complete(request, id, dept_id):
+    comp = complaint.objects.get(id=id)
+    comp.completed = True
+    comp.save()
+    return redirect('department',id=dept_id)
+
 def department_id(request,id):
     new = complaint.objects.filter(department=id,completed=False).order_by('-created')
     done = complaint.objects.filter(department=id,completed=True).order_by('-completed_at')
